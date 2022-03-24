@@ -6,6 +6,7 @@ import model.StudentEnrolment;
 import repo.StudentEnrolmentManager;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class csvService {
     private StudentEnrolmentManager sem;
@@ -14,12 +15,11 @@ public class csvService {
         this.sem = sem;
     }
 
-    public String[] getAllEnrolments(){
-        return new String[0];
-    }
-
-    private Student convertCsvToStudent(){
-
+    private Student convertCsvToStudent(String csv){
+        String[] fields = csv.split(",");
+        String sid = fields[0].trim();
+        String studentName = fields[2].trim();
+        Date birthDate = null;
     }
 
     private Course convertCsvToCourse(){
