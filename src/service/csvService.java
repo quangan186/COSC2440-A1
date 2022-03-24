@@ -1,4 +1,4 @@
-package csv;
+package service;
 
 import model.Course;
 import model.Student;
@@ -9,11 +9,9 @@ import java.util.ArrayList;
 
 public class csvService {
     private StudentEnrolmentManager sem;
-    private String fileName;
 
-    public csvService(StudentEnrolmentManager sem, String fileName) {
+    public csvService(StudentEnrolmentManager sem) {
         this.sem = sem;
-        this.fileName = fileName;
     }
 
     public String[] getAllEnrolments(){
