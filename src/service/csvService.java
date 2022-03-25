@@ -1,5 +1,6 @@
 package service;
 
+import csv.csvReader;
 import model.Course;
 import model.Student;
 import model.StudentEnrolment;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class csvService {
-    private StudentEnrolmentManager sem;
+    private final StudentEnrolmentManager sem;
 
     public csvService(StudentEnrolmentManager sem) {
         this.sem = sem;
@@ -41,19 +42,37 @@ public class csvService {
 
     private StudentEnrolment convertCsvToEnrolment(String csv){
         String[] fields = csv.split(",");
-        String sem = fields[6].trim();
-        return new StudentEnrolment(convertCsvToStudent(csv), convertCsvToCourse(csv), sem);
+        Student student = sem.getStudentByID(fields[0]);
+        Course course = sem.getCourseByID(fields[3]);
+        String sem = fields[6];
+
+        return new StudentEnrolment(student, course, sem);
     }
 
-//    public ArrayList<Student> getStudentsFromCSV(String fileName){
-//
-//    }
-//
-//    public ArrayList<Course> getCoursesFromCSV(String fileName){
-//
-//    }
-//
-//    public ArrayList<StudentEnrolment> getEnrolmentsFromCSV(String fileName){
-//
-//    }
+    public ArrayList<Student> getStudentsFromCSV(String fileName){
+        csvReader reader = new csvReader(fileName);
+        ArrayList<Student> students = new ArrayList<>();
+        for (String row : reader.getAllEnrolment()){
+            students.add(convertCsvToStudent(row));
+        }
+        return students;
+    }
+
+    public ArrayList<Course> getCoursesFromCSV(String fileName){
+        csvReader reader = new csvReader(fileName);
+        ArrayList<Course> courses = new ArrayList<>();
+        for (String row : reader.getAllEnrolment()){
+            courses.add(convertCsvToCourse(row));
+        }
+        return courses;
+    }
+
+    public ArrayList<StudentEnrolment> getEnrolmentsFromCSV(String fileName){
+        csvReader reader = new csvReader(fileName);
+        ArrayList<StudentEnrolment> enrolments = new ArrayList<>();
+        for (String se : reader.getAllEnrolment()){
+            enrolments.add(convertCsvToEnrolment(se));
+        }
+        return enrolments;
+    }
 }
