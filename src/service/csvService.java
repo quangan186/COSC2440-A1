@@ -18,7 +18,7 @@ public class csvService {
         this.sem = sem;
     }
 
-    private Student convertCsvToStudent(String csv){
+    private Student convertRowToStudent(String csv){
         String[] fields = csv.split(",");
         String sid = fields[0].trim();
         String studentName = fields[1].trim();
@@ -31,7 +31,7 @@ public class csvService {
         return new Student(sid, studentName, birthDate);
     }
 
-    private Course convertCsvToCourse(String csv){
+    private Course convertRowToCourse(String csv){
         String[] fields = csv.split(",");
         String cid = fields[3].trim();
         String courseName = fields[4].trim();
@@ -40,20 +40,20 @@ public class csvService {
         return new Course(cid, courseName, credit);
     }
 
-    private StudentEnrolment convertCsvToEnrolment(String csv){
+    private StudentEnrolment convertRowToEnrolment(String csv){
         String[] fields = csv.split(",");
-        Student student = sem.getStudentByID(fields[0]);
-        Course course = sem.getCourseByID(fields[3]);
+//        Student student = sem.getStudentByID(fields[0]);
+//        Course course = sem.getCourseByID(fields[3]);
         String sem = fields[6];
 
-        return new StudentEnrolment(student, course, sem);
+        return new StudentEnrolment(convertRowToStudent(csv), convertRowToCourse(csv), sem);
     }
 
     public ArrayList<Student> getStudentsFromCSV(String fileName){
         csvReader reader = new csvReader(fileName);
         ArrayList<Student> students = new ArrayList<>();
         for (String row : reader.getAllEnrolment()){
-            students.add(convertCsvToStudent(row));
+            students.add(convertRowToStudent(row));
         }
         return students;
     }
@@ -62,7 +62,7 @@ public class csvService {
         csvReader reader = new csvReader(fileName);
         ArrayList<Course> courses = new ArrayList<>();
         for (String row : reader.getAllEnrolment()){
-            courses.add(convertCsvToCourse(row));
+            courses.add(convertRowToCourse(row));
         }
         return courses;
     }
@@ -71,7 +71,7 @@ public class csvService {
         csvReader reader = new csvReader(fileName);
         ArrayList<StudentEnrolment> enrolments = new ArrayList<>();
         for (String se : reader.getAllEnrolment()){
-            enrolments.add(convertCsvToEnrolment(se));
+            enrolments.add(convertRowToEnrolment(se));
         }
         return enrolments;
     }

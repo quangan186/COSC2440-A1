@@ -36,10 +36,14 @@ public class StudentEnrolmentManagerImpl implements StudentEnrolmentManager{
     }
 
     public StudentEnrolment addEnrolment(String studentID, String courseID, String sem){
-        if (getOneEnrolment(studentID, courseID, sem) != null){
-            enrolmentList.add(getOneEnrolment(studentID, courseID, sem));
-        }
-        return null;
+        Student s = getStudentByID(studentID);
+        if (s == null) return null;
+        Course c = getCourseByID(courseID);
+        if (c == null) return null;
+        StudentEnrolment newEnrolment = new StudentEnrolment(s, c, sem);
+        if (getOneEnrolment(studentID, courseID, sem) != null) return null;
+        enrolmentList.add(newEnrolment);
+        return newEnrolment;
     }
 
     public boolean deleteEnrolment(String studentID, String courseID, String sem){
