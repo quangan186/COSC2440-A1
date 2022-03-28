@@ -14,8 +14,11 @@ public class StudentService {
         this.sem = sem;
     }
 
-    public void displayOnTable(ArrayList<Student> studentList){
-
+    public void display(ArrayList<Student> studentList){
+        for (Student student : studentList){
+            System.out.printf("- Student ID: %s\n- Student name: %s\n- Birthdate: %s\n\n", student.getStudentID(),
+                    student.getName(), student.getBirthDate());
+        }
     }
 
     public ArrayList<Student> getAllStudents(){

@@ -1,5 +1,6 @@
 package service;
 
+import model.Course;
 import model.StudentEnrolment;
 import repo.StudentEnrolmentManager;
 
@@ -12,8 +13,21 @@ public class EnrolmentService {
         this.sem = sem;
     }
 
-    public void displayOnTable(ArrayList<StudentEnrolment> enrolmentList){
-
+    public void display(ArrayList<StudentEnrolment> enrolmentList){
+        for (StudentEnrolment se : enrolmentList){
+            System.out.printf("""
+                            - Student ID: %s
+                            - Student name: %s
+                            - Birthdate: %s
+                            - Course ID: %s
+                            - Course name: %s
+                            - Credit: %d
+                            - Semester: %s
+                                                
+                            """, se.getStudent().getStudentID(), se.getStudent().getName(),
+                    se.getStudent().getBirthDate(), se.getCourse().getCourseID(), se.getCourse().getCourseName(),
+                    se.getCourse().getCredit(), se.getSem());
+        }
     }
 
     public ArrayList<StudentEnrolment> getAllEnrolments(){

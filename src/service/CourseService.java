@@ -13,8 +13,10 @@ public class CourseService {
         this.sem = sem;
     }
 
-    public void displayOnTable(ArrayList<Course> courseList){
-
+    public void display(ArrayList<Course> courseList){
+        for (Course course : courseList){
+            System.out.printf("- Course ID: %s\n- Course name: %s\n- Credit: %d\n\n", course.getCourseID(), course.getCourseName(), course.getCredit());
+        }
     }
 
     public ArrayList<Course> getAllCourses(){
