@@ -43,7 +43,7 @@ public class EnrolmentService {
         return sem.getOneEnrolment(studentID, courseID, semester);
     }
 
-    public StudentEnrolment addEnrolment(String studentID, String courseID, String semester){
+    public boolean addEnrolment(String studentID, String courseID, String semester){
         return sem.addEnrolment(studentID, courseID, semester);
     }
 

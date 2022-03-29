@@ -7,7 +7,7 @@ import model.StudentEnrolment;
 import java.util.ArrayList;
 
 public interface StudentEnrolmentManager {
-    StudentEnrolment addEnrolment(String studentID, String courseID, String sem);
+    boolean addEnrolment(String studentID, String courseID, String sem);
     boolean deleteEnrolment(String studentID, String courseID, String sem);
     StudentEnrolment getOneEnrolment(String studentID, String courseID, String sem);
     ArrayList<StudentEnrolment> getAllEnrolment();
