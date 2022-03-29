@@ -1,6 +1,7 @@
 package service;
 
 import model.Course;
+import model.Student;
 import model.StudentEnrolment;
 import repo.StudentEnrolmentManager;
 
@@ -32,6 +33,14 @@ public class EnrolmentService {
 
     public ArrayList<StudentEnrolment> getAllEnrolments(){
         return sem.getAllEnrolment();
+    }
+
+    public ArrayList<StudentEnrolment> getAllEnrolmentsInOneSemester(String semester){
+        return sem.getAllEnrolmentsInOneSemester(semester);
+    }
+
+    public StudentEnrolment getOneEnrolment(String studentID, String courseID, String semester){
+        return sem.getOneEnrolment(studentID, courseID, semester);
     }
 
     public StudentEnrolment addEnrolment(String studentID, String courseID, String semester){

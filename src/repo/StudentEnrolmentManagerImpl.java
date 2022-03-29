@@ -64,6 +64,16 @@ public class StudentEnrolmentManagerImpl implements StudentEnrolmentManager{
         return null;
     }
 
+    public ArrayList<StudentEnrolment> getAllEnrolmentsInOneSemester(String sem) {
+        ArrayList<StudentEnrolment> enrolments = new ArrayList<>();
+        for (StudentEnrolment se : enrolmentList){
+            if (se.getSem().equals(sem)){
+                enrolments.add(se);
+            }
+        }
+        return enrolments;
+    }
+
     public ArrayList<StudentEnrolment> getAllEnrolment(){
         return enrolmentList;
     }

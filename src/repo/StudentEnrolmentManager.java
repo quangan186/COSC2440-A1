@@ -13,6 +13,7 @@ public interface StudentEnrolmentManager {
     ArrayList<StudentEnrolment> getAllEnrolment();
     ArrayList<Course> getAllCourses();
     ArrayList<Student> getAllStudents();
+    ArrayList<StudentEnrolment> getAllEnrolmentsInOneSemester(String sem);
     Student getStudentByID(String studentID);
     Course getCourseByID(String courseID);
 }
