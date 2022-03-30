@@ -2,13 +2,16 @@ package menu;
 
 import repo.StudentEnrolmentManager;
 import service.CourseService;
+import service.InputService;
 
 import java.util.Scanner;
 
 public class CourseMenu {
     private final CourseService courseService;
+    private final InputService inputService;
 
     public CourseMenu(StudentEnrolmentManager sem) {
+        this.inputService = new InputService(sem);
         this.courseService = new CourseService(sem);
     }
 
@@ -16,26 +19,25 @@ public class CourseMenu {
         courseService.display(courseService.getAllCourses());
     }
     public void viewAllCoursesInOneSemester(){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Semester: ");
-        String semester = sc.nextLine();
+        String semester = inputService.getSemesterInput();
+        if (semester.isEmpty()) return;
         courseService.display(courseService.getAllCoursesInOneSemester(semester));
     }
 
     public void viewCoursesStudentLearnInOneSemester(){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Student ID: ");
-        String sid = sc.nextLine() + "\n";
-        System.out.print("Semester: ");
-        String semester = sc.nextLine() + "\n";
+        String sid = inputService.getSidInput();
+        if (sid.isEmpty()) return;
+        String semester = inputService.getSemesterInput();
+        if (semester.isEmpty()) return;
         courseService.display(courseService.getCoursesStudentLearnsInOneSemester(sid, semester));
     }
 
     public void menu(){
+        System.out.println("Which one you want to see?");
         System.out.println("1. View courses");
         System.out.println("2. View courses in one semester");
         System.out.println("3. View courses student learn in one semester");
-        System.out.println("Which one you want to see?");
+        System.out.println("4. Back");
     }
 
 //    private String inputChoice() {
