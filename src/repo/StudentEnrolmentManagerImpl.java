@@ -13,8 +13,8 @@ public class StudentEnrolmentManagerImpl implements StudentEnrolmentManager{
     private final ArrayList<Course> courseList = new ArrayList<>();
     private final csvService csvService;
 
-    public StudentEnrolmentManagerImpl(service.csvService csvService) {
-        this.csvService = new csvService(this);
+    public StudentEnrolmentManagerImpl() {
+        csvService = new csvService(this);
     }
 
     public void populateData() {
