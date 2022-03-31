@@ -1,6 +1,6 @@
 package model;
 
-public class Course {
+public class Course implements Model{
     private final String courseID;
     private final String courseName;
     private final int credit;
@@ -30,5 +30,9 @@ public class Course {
                 ", courseName='" + courseName + '\'' +
                 ", credit=" + credit +
                 '}';
+    }
+
+    public String toCsvString(){
+        return String.join(",", courseID, courseName, String.valueOf(credit)) + "\n";
     }
 }

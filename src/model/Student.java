@@ -36,4 +36,8 @@ public class Student {
                 ", birthDate=" + birthDate +
                 '}';
     }
+    public String toCsvString(){
+        return String.join(",", studentID, name, DateConverter.convertDateToString(birthDate)) + "\n";
+    }
+
 }

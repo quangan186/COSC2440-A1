@@ -1,6 +1,8 @@
 package model;
 
-public class StudentEnrolment {
+import utility.DateConverter;
+
+public class StudentEnrolment implements Model{
     private final Student student;
     private final Course course;
     private final String sem;
@@ -30,5 +32,11 @@ public class StudentEnrolment {
                 ", course=" + course +
                 ", sem='" + sem + '\'' +
                 '}';
+    }
+
+    public String toCsvString(){
+        return String.join(",", student.getStudentID(), student.getName(),
+                DateConverter.convertDateToString(student.getBirthDate()), course.getCourseID(), course.getCourseName(),
+                String.valueOf(course.getCredit()), sem) + "\n";
     }
 }
