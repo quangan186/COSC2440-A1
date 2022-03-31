@@ -14,6 +14,7 @@ public class CourseService {
     }
 
     public void display(ArrayList<Course> courseList){
+//        System.out.println("---------- Student Enrolment Management ----------");
         for (Course course : courseList){
             System.out.printf("- Course ID: %s\n- Course name: %s\n- Credit: %d\n\n", course.getCourseID(), course.getCourseName(), course.getCredit());
         }
@@ -36,7 +37,7 @@ public class CourseService {
     public ArrayList<Course> getCoursesStudentLearnsInOneSemester(String studentID, String semester){
         ArrayList<Course> courses = new ArrayList<>();
         for (StudentEnrolment se : sem.getAllEnrolment()){
-            if (se.getSem().equals(semester) && se.getStudent().getStudentID().equals(studentID)){
+            if (se.getSem().equals(semester) && se.getStudent().getStudentID().equals(studentID) && !courses.contains(se.getCourse())){
                 courses.add(se.getCourse());
             }
         }

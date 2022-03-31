@@ -1,9 +1,13 @@
 package menu;
 
+import csv.CsvWriter;
+import model.Course;
 import repo.StudentEnrolmentManager;
 import service.CourseService;
 import service.InputService;
 import utility.Input;
+
+import java.util.ArrayList;
 
 public class CourseMenu {
     private final CourseService courseService;
@@ -21,7 +25,21 @@ public class CourseMenu {
     public void viewAllCoursesInOneSemester(){
         String semester = inputService.getSemesterInput();
         if (semester.isEmpty()) return;
-        courseService.display(courseService.getAllCoursesInOneSemester(semester));
+        ArrayList<Course> courses = courseService.getAllCoursesInOneSemester(semester);
+        courseService.display(courses);
+        String saveReport = inputService.getWriteReport();
+        while (!saveReport.isEmpty()){
+            switch (saveReport.toLowerCase()){
+                case "y":
+                    CsvWriter csvWriter = new CsvWriter("courses", semester);
+                    csvWriter.writeFile(courses);
+                case "n":
+                    return;
+                default:
+                    System.out.println("Invalid input");
+
+            }
+        }
     }
 
     public void viewCoursesStudentLearnInOneSemester(){
@@ -29,7 +47,22 @@ public class CourseMenu {
         if (sid.isEmpty()) return;
         String semester = inputService.getSemesterInput();
         if (semester.isEmpty()) return;
-        courseService.display(courseService.getCoursesStudentLearnsInOneSemester(sid, semester));
+        ArrayList<Course> courses = courseService.getCoursesStudentLearnsInOneSemester(sid, semester);
+        courseService.display(courses);
+        String saveReport = inputService.getWriteReport();
+        while (!saveReport.isEmpty()){
+            switch (saveReport.toLowerCase()){
+                case "y":
+                    CsvWriter csvWriter = new CsvWriter("courses", sid, semester);
+                    csvWriter.writeFile(courses);
+                case "n":
+                    return;
+                default:
+                    System.out.println("Invalid input");
+
+            }
+        }
+
     }
 
     public void menu(){

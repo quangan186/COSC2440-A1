@@ -24,14 +24,17 @@ public class StudentEnrolmentManagerImpl implements StudentEnrolmentManager{
     }
 
     private void populateStudents() {
+        studentList.clear();
         studentList.addAll(csvService.getStudentsFromCSV("default.csv"));
     }
 
     private void populateCourses() {
+        courseList.clear();
         courseList.addAll(csvService.getCoursesFromCSV("default.csv"));
     }
 
     private void populateEnrolments() {
+        enrolmentList.clear();
         enrolmentList.addAll(csvService.getEnrolmentsFromCSV("default.csv"));
     }
 

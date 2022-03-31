@@ -8,7 +8,7 @@ import repo.StudentEnrolmentManager;
 import java.util.ArrayList;
 
 public class StudentService {
-    private StudentEnrolmentManager sem;
+    private final StudentEnrolmentManager sem;
 
     public StudentService(StudentEnrolmentManager sem) {
         this.sem = sem;
@@ -28,7 +28,7 @@ public class StudentService {
     public ArrayList<Student> getAllStudentsInOneCourse(String courseID, String semester){
         ArrayList<Student> students = new ArrayList<>();
         for (StudentEnrolment se : sem.getAllEnrolment()){
-            if (se.getCourse().getCourseID().equals(courseID) && se.getSem().equals(semester)){
+            if (se.getCourse().getCourseID().equals(courseID) && se.getSem().equals(semester) && !students.contains(se.getStudent())){
                 students.add(se.getStudent());
             }
         }

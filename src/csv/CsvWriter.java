@@ -7,17 +7,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class csvWriter {
+public class CsvWriter {
     private final String fileName;
 
-    public csvWriter(String... names) {
+    public CsvWriter(String... names) {
         this.fileName = String.join("_", names) + ".csv";
     }
 
     public boolean writeFile(ArrayList<? extends Model> models){
         createFile();
         try {
-            FileWriter fileWriter = new FileWriter(fileName);
+            FileWriter fileWriter = new FileWriter("C:\\COSC2440-A1\\src\\data\\" + fileName);
             StringBuilder sb = new StringBuilder();
             for (Model m : models){
                 sb.append(m.toCsvString());
@@ -33,7 +33,7 @@ public class csvWriter {
     }
 
     private File createFile(){
-        File file = new File(fileName);
+        File file = new File("C:\\COSC2440-A1\\src\\data\\" + fileName);
         try {
             file.createNewFile();
         } catch (IOException e) {

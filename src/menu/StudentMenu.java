@@ -1,10 +1,15 @@
 package menu;
 
 import com.sun.tools.javac.Main;
+import csv.CsvWriter;
+import model.Course;
+import model.Student;
 import repo.StudentEnrolmentManager;
 import service.InputService;
 import service.StudentService;
 import utility.Input;
+
+import java.util.ArrayList;
 
 public class StudentMenu {
     private final StudentService studentService;
@@ -25,7 +30,22 @@ public class StudentMenu {
         if (cid.isEmpty()) return;
         String semester = inputService.getSemesterInput();
         if (semester.isEmpty()) return;
-        studentService.display(studentService.getAllStudentsInOneCourse(cid, semester));
+        ArrayList<Student> students = studentService.getAllStudentsInOneCourse(cid,semester);
+        studentService.display(students);
+        String saveReport = inputService.getWriteReport();
+        while (!saveReport.isEmpty()){
+            switch (saveReport.toLowerCase()){
+                case "y":
+                    CsvWriter csvWriter = new CsvWriter("students", semester);
+                    csvWriter.writeFile(students);
+                case "n":
+                    return;
+                default:
+                    System.out.println("Invalid input");
+
+            }
+        }
+
     }
 
     public void menu(){
