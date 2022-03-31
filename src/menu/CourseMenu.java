@@ -3,21 +3,21 @@ package menu;
 import repo.StudentEnrolmentManager;
 import service.CourseService;
 import service.InputService;
-
-import java.util.Scanner;
+import utility.Input;
 
 public class CourseMenu {
     private final CourseService courseService;
     private final InputService inputService;
 
     public CourseMenu(StudentEnrolmentManager sem) {
-        this.inputService = new InputService(sem);
+        this.inputService = new InputService();
         this.courseService = new CourseService(sem);
     }
 
     public void viewCourses(){
         courseService.display(courseService.getAllCourses());
     }
+
     public void viewAllCoursesInOneSemester(){
         String semester = inputService.getSemesterInput();
         if (semester.isEmpty()) return;
@@ -40,15 +40,20 @@ public class CourseMenu {
         System.out.println("4. Back");
     }
 
-//    private String inputChoice() {
-//        Scanner sc = new Scanner(System.in);
-//        System.out.print("Your choice: ");
-//        return sc.nextLine();
-//    }
-//
-//    private String yesNoInput(){
-//        Scanner sc = new Scanner(System.in);
-//        System.out.print("Do you want to see more (y/n): ");
-//        return sc.nextLine();
-//    }
+    public void run(){
+        while (true){
+            menu();
+            Input input = new Input("Your choice: ");
+            String choice = input.getInput();
+            switch (choice) {
+                case "1" -> viewCourses();
+                case "2" -> viewAllCoursesInOneSemester();
+                case "3" -> viewCoursesStudentLearnInOneSemester();
+                case "4" -> {
+                    return;
+                }
+                default -> System.out.println("Invalid input");
+            }
+        }
+    }
 }

@@ -1,9 +1,9 @@
 package model;
 
 public class StudentEnrolment {
-    private Student student;
-    private Course course;
-    private String sem;
+    private final Student student;
+    private final Course course;
+    private final String sem;
 
     public Student getStudent() {
         return student;

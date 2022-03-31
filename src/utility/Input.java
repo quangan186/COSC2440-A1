@@ -3,7 +3,7 @@ package utility;
 import java.util.Scanner;
 
 public class Input {
-    private String question;
+    private final String question;
 
     public Input(String question) {
         this.question = question;

@@ -1,11 +1,14 @@
 package model;
 
+import utility.DateConverter;
+
+import java.text.ParseException;
 import java.util.Date;
 
 public class Student {
-    private String studentID;
-    private String name;
-    private Date birthDate;
+    private final String studentID;
+    private final String name;
+    private final Date birthDate;
 
     public Student(String studentID, String name, Date birthDate) {
         this.studentID = studentID;

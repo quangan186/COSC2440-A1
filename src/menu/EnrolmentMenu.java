@@ -1,21 +1,16 @@
 package menu;
 
-import model.StudentEnrolment;
 import repo.StudentEnrolmentManager;
 import service.EnrolmentService;
 import service.InputService;
 import utility.Input;
-
-import java.awt.*;
-import java.util.Locale;
-import java.util.Scanner;
 
 public class EnrolmentMenu {
     private final EnrolmentService enrolmentService;
     private final InputService inputService;
 
     public EnrolmentMenu(StudentEnrolmentManager sem) {
-        this.inputService = new InputService(sem);
+        this.inputService = new InputService();
         this.enrolmentService = new EnrolmentService(sem);
     }
 
@@ -23,20 +18,10 @@ public class EnrolmentMenu {
         enrolmentService.display(enrolmentService.getAllEnrolments());
     }
     public void viewEnrolmentsInOneSemester(){
-//        Scanner sc = new Scanner(System.in);
-//        System.out.print("Semester: ");
-//        String semester = sc.nextLine() + "\n";
         String semester = inputService.getSemesterInput();
         enrolmentService.display(enrolmentService.getAllEnrolmentsInOneSemester(semester));
     }
-    public void viewEnrolmentInOneSemester(){
-//        Scanner sc = new Scanner(System.in);
-//        System.out.print("Student ID: ");
-//        String sid = sc.nextLine() + "\n";
-//        System.out.print("Course ID: ");
-//        String cid = sc.nextLine() + "\n";
-//        System.out.print("Semester: ");
-//        String semester = sc.nextLine() + "\n";
+    public void viewOneEnrolmentInOneSemester(){
         String sid = inputService.getSidInput();
         String cid = inputService.getCidInput();
         String semester = inputService.getSemesterInput();
@@ -44,13 +29,6 @@ public class EnrolmentMenu {
     }
 
     public void addOneEnrolment(){
-//        Scanner sc = new Scanner(System.in);
-//        System.out.print("Student ID: ");
-//        String sid = sc.nextLine() + "\n";
-//        System.out.print("Course ID: ");
-//        String cid = sc.nextLine() + "\n";
-//        System.out.print("Semester: ");
-//        String semester = sc.nextLine() + "\n";
         String sid = inputService.getSidInput();
         String cid = inputService.getCidInput();
         String semester = inputService.getSemesterInput();
@@ -65,13 +43,6 @@ public class EnrolmentMenu {
     }
 
     public void deleteOneEnrolment(){
-//        Scanner sc = new Scanner(System.in);
-//        System.out.print("Student ID: ");
-//        String sid = sc.nextLine() + "\n";
-//        System.out.print("Course ID: ");
-//        String cid = sc.nextLine() + "\n";
-//        System.out.print("Semester: ");
-//        String semester = sc.nextLine() + "\n";
         String sid = inputService.getSidInput();
         if (sid.isEmpty()) return;
         String cid = inputService.getCidInput();
@@ -87,17 +58,22 @@ public class EnrolmentMenu {
         }
     }
 
-    public void updateEnrolmentMenu(String choice){
-        String moreOrNot;
-        while (choice.equalsIgnoreCase("y")){
+    public void updateEnrolmentMenu(String s){
+        while (s.equalsIgnoreCase("y")){
             System.out.println("1. Add enrolment");
             System.out.println("2. Delete enrolment");
-            Input decision = new Input("Your choice: ");
-            switch (decision.getInput()){
+            System.out.println("3. Back");
+            Input choice = new Input("Your choice: ");
+            String decision = choice.getInput();
+            switch (decision){
                 case "1":
                     addOneEnrolment();
+                    break;
                 case "2":
                     deleteOneEnrolment();
+                    break;
+                case "3":
+                    return;
                 default:
                     System.out.println("Invalid input\n");
             }
@@ -110,5 +86,27 @@ public class EnrolmentMenu {
         System.out.println("2. View all enrolments in one semester");
         System.out.println("3. View one enrolment in one semester");
         System.out.println("4. Back");
+    }
+
+    public void run() {
+        while (true) {
+            menu();
+            Input input = new Input("Your choice: ");
+            String choice = input.getInput();
+            switch (choice) {
+                case "1" -> {
+                    viewEnrolments();
+                    System.out.println("Do you want to update enrolment? (y/n): ");
+                    String addOrRemove = input.getInput();
+                    updateEnrolmentMenu(addOrRemove);
+                }
+                case "2" -> viewEnrolmentsInOneSemester();
+                case "3" -> viewOneEnrolmentInOneSemester();
+                case "4" -> {
+                    return;
+                }
+                default -> System.out.println("Invalid input");
+            }
+        }
     }
 }

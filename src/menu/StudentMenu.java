@@ -1,10 +1,10 @@
 package menu;
 
+import com.sun.tools.javac.Main;
 import repo.StudentEnrolmentManager;
 import service.InputService;
 import service.StudentService;
-
-import java.util.Scanner;
+import utility.Input;
 
 public class StudentMenu {
     private final StudentService studentService;
@@ -12,7 +12,8 @@ public class StudentMenu {
 
     public StudentMenu(StudentEnrolmentManager sem) {
         this.studentService = new StudentService(sem);
-        this.inputService = new InputService(sem);
+        this.inputService = new InputService();
+
     }
 
     public void viewStudents(){
@@ -32,5 +33,21 @@ public class StudentMenu {
         System.out.println("1. View all students");
         System.out.println("2. View all students in one course");
         System.out.println("3. Back");
+    }
+
+    public void run() {
+        while (true) {
+            menu();
+            Input input = new Input("Your choice: ");
+            String choice = input.getInput();
+            switch (choice) {
+                case "1" -> viewStudents();
+                case "2" -> viewAllStudentsInOneCourse();
+                case "3" -> {
+                    return;
+                }
+                default -> System.out.println("Invalid input");
+            }
+        }
     }
 }

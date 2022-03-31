@@ -1,9 +1,9 @@
 package model;
 
 public class Course {
-    private String courseID;
-    private String courseName;
-    private int credit;
+    private final String courseID;
+    private final String courseName;
+    private final int credit;
 
     public Course(String courseID, String courseName, int credit) {
         this.courseID = courseID;
