@@ -37,7 +37,7 @@ public class CourseMenu {
                     return;
                 default:
                     System.out.println("Invalid input");
-
+                    return;
             }
         }
     }
@@ -59,7 +59,7 @@ public class CourseMenu {
                     return;
                 default:
                     System.out.println("Invalid input");
-
+                    return;
             }
         }
 

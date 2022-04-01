@@ -4,8 +4,11 @@ import model.Course;
 import model.Student;
 import model.StudentEnrolment;
 import repo.StudentEnrolmentManager;
+import utility.DateConverter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class EnrolmentService {
     private final StudentEnrolmentManager sem;
@@ -26,16 +29,22 @@ public class EnrolmentService {
                             - Semester: %s
                                                 
                             """, se.getStudent().getStudentID(), se.getStudent().getName(),
-                    se.getStudent().getBirthDate(), se.getCourse().getCourseID(), se.getCourse().getCourseName(),
+                    DateConverter.convertDateToString(se.getStudent().getBirthDate()), se.getCourse().getCourseID(), se.getCourse().getCourseName(),
                     se.getCourse().getCredit(), se.getSem());
         }
     }
 
     public ArrayList<StudentEnrolment> getAllEnrolments(){
+        Set<StudentEnrolment> set = new HashSet<>(sem.getAllEnrolment());
+        sem.getAllEnrolment().clear();
+        sem.getAllEnrolment().addAll(set);
         return sem.getAllEnrolment();
     }
 
     public ArrayList<StudentEnrolment> getAllEnrolmentsInOneSemester(String semester){
+        Set<StudentEnrolment> set = new HashSet<>(sem.getAllEnrolmentsInOneSemester(semester));
+        sem.getAllEnrolmentsInOneSemester(semester).clear();
+        sem.getAllEnrolmentsInOneSemester(semester).addAll(set);
         return sem.getAllEnrolmentsInOneSemester(semester);
     }
 

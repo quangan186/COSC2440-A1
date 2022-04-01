@@ -1,6 +1,7 @@
 package menu;
 
 import repo.StudentEnrolmentManager;
+import service.CourseService;
 import service.EnrolmentService;
 import service.InputService;
 import utility.Input;
@@ -8,10 +9,12 @@ import utility.Input;
 public class EnrolmentMenu {
     private final EnrolmentService enrolmentService;
     private final InputService inputService;
+    private final CourseService courseService;
 
     public EnrolmentMenu(StudentEnrolmentManager sem) {
         this.inputService = new InputService();
         this.enrolmentService = new EnrolmentService(sem);
+        this.courseService = new CourseService(sem);
     }
 
     public void viewEnrolments(){
@@ -60,6 +63,7 @@ public class EnrolmentMenu {
 
     public void updateEnrolmentMenu(String s){
         while (s.equalsIgnoreCase("y")){
+            courseService.display(courseService.getAllCourses());
             System.out.println("1. Add enrolment");
             System.out.println("2. Delete enrolment");
             System.out.println("3. Back");

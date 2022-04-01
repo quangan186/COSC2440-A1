@@ -38,11 +38,12 @@ public class StudentMenu {
                 case "y":
                     CsvWriter csvWriter = new CsvWriter("students", semester);
                     csvWriter.writeFile(students);
+                    System.out.println("Saved\n");
                 case "n":
                     return;
                 default:
                     System.out.println("Invalid input");
-
+                    return;
             }
         }
 

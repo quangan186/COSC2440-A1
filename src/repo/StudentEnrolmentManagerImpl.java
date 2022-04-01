@@ -3,7 +3,7 @@ package repo;
 import model.Course;
 import model.Student;
 import model.StudentEnrolment;
-import service.csvService;
+import service.CsvService;
 
 import java.util.ArrayList;
 
@@ -11,10 +11,10 @@ public class StudentEnrolmentManagerImpl implements StudentEnrolmentManager{
     private final ArrayList<StudentEnrolment> enrolmentList = new ArrayList<>();
     private final ArrayList<Student> studentList = new ArrayList<>();
     private final ArrayList<Course> courseList = new ArrayList<>();
-    private final csvService csvService;
+    private final CsvService csvService;
 
     public StudentEnrolmentManagerImpl() {
-        csvService = new csvService(this);
+        csvService = new CsvService(this);
     }
 
     public void populateData() {

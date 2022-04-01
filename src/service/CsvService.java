@@ -11,10 +11,10 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class csvService {
+public class CsvService {
     private final StudentEnrolmentManager sem;
 
-    public csvService(StudentEnrolmentManager sem) {
+    public CsvService(StudentEnrolmentManager sem) {
         this.sem = sem;
     }
 
@@ -42,8 +42,6 @@ public class csvService {
 
     private StudentEnrolment convertRowToEnrolment(String csv){
         String[] fields = csv.split(",");
-//        Student student = sem.getStudentByID(fields[0]);
-//        Course course = sem.getCourseByID(fields[3]);
         String sem = fields[6];
 
         return new StudentEnrolment(convertRowToStudent(csv), convertRowToCourse(csv), sem);

@@ -5,6 +5,8 @@ import model.StudentEnrolment;
 import repo.StudentEnrolmentManager;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CourseService {
     private final StudentEnrolmentManager sem;
@@ -21,6 +23,9 @@ public class CourseService {
     }
 
     public ArrayList<Course> getAllCourses(){
+        Set<Course> set = new HashSet<>(sem.getAllCourses());
+        sem.getAllCourses().clear();
+        sem.getAllCourses().addAll(set);
         return sem.getAllCourses();
     }
 
@@ -31,16 +36,23 @@ public class CourseService {
                 courses.add(se.getCourse());
             }
         }
+
+        Set<Course> set = new HashSet<>(courses);
+        courses.clear();
+        courses.addAll(set);
         return courses;
     }
 
     public ArrayList<Course> getCoursesStudentLearnsInOneSemester(String studentID, String semester){
         ArrayList<Course> courses = new ArrayList<>();
         for (StudentEnrolment se : sem.getAllEnrolment()){
-            if (se.getSem().equals(semester) && se.getStudent().getStudentID().equals(studentID) && !courses.contains(se.getCourse())){
+            if (se.getSem().equals(semester) && se.getStudent().getStudentID().equals(studentID)){
                 courses.add(se.getCourse());
             }
         }
+        Set<Course> set = new HashSet<>(courses);
+        courses.clear();
+        courses.addAll(set);
         return courses;
     }
 }
