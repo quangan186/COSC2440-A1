@@ -14,7 +14,7 @@ public class MainMenu {
     }
 
     public void menu(){
-        System.out.println("---------- Student Enrolment Management ----------");
+        System.out.println("--------------- Student Enrolment Management ---------------");
         System.out.println("Which one you want to see: ");
         System.out.println("1. Manage courses");
         System.out.println("2. Manage enrolments");
@@ -35,7 +35,7 @@ public class MainMenu {
                     System.out.println("Thank you for using our system!");
                     return;
                 }
-                default -> System.out.println("Invalid input");
+                default -> System.out.println("------------------------------------------------------------\nInvalid input");
             }
         }
     }

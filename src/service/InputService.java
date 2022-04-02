@@ -12,7 +12,7 @@ public class InputService {
         this.sidInput = new Input("Student ID: ");
         this.cidInput = new Input("Course ID: ");
         this.semesterInput = new Input("Semester: ");
-        this.writeReport = new Input("Do you want to save the report? (y/n) ");
+        this.writeReport = new Input("Do you want to save the report? (y/n): ");
     }
 
     public String getSidInput() {

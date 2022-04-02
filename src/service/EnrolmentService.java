@@ -27,7 +27,7 @@ public class EnrolmentService {
                             - Course name: %s
                             - Credit: %d
                             - Semester: %s
-                                                
+                                                                         
                             """, se.getStudent().getStudentID(), se.getStudent().getName(),
                     DateConverter.convertDateToString(se.getStudent().getBirthDate()), se.getCourse().getCourseID(), se.getCourse().getCourseName(),
                     se.getCourse().getCredit(), se.getSem());

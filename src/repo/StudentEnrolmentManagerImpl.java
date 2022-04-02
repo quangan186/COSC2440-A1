@@ -38,39 +38,49 @@ public class StudentEnrolmentManagerImpl implements StudentEnrolmentManager{
         enrolmentList.addAll(csvService.getEnrolmentsFromCSV("default.csv"));
     }
 
-    public boolean addEnrolment(String studentID, String courseID, String sem){
+    public boolean addEnrolment(String studentID, String courseID, String semester){
         Student s = getStudentByID(studentID);
         Course c = getCourseByID(courseID);
-        StudentEnrolment newEnrolment = new StudentEnrolment(s, c, sem);
-        if (getOneEnrolment(studentID, courseID, sem) != null){
+        if (getOneEnrolment(studentID, courseID, semester) == null && getSemestersInOneCourse(courseID).contains(semester)){
+            StudentEnrolment newEnrolment = new StudentEnrolment(s, c, semester);
             enrolmentList.add(newEnrolment);
             return true;
         }
         return false;
     }
 
-    public boolean deleteEnrolment(String studentID, String courseID, String sem){
-        if (getOneEnrolment(studentID, courseID, sem) != null){
-            enrolmentList.remove(getOneEnrolment(studentID, courseID, sem));
+    private ArrayList<String> getSemestersInOneCourse(String courseID){
+        ArrayList<String> semList = new ArrayList<>();
+        for (StudentEnrolment se : getAllEnrolment()){
+            if (se.getCourse().getCourseID().equals(courseID)){
+                semList.add(se.getSem());
+            }
+        }
+        return semList;
+    }
+
+    public boolean deleteEnrolment(String studentID, String courseID, String semester){
+        if (getOneEnrolment(studentID, courseID, semester) != null){
+            enrolmentList.remove(getOneEnrolment(studentID, courseID, semester));
             return true;
         }
         return false;
     }
 
-    public StudentEnrolment getOneEnrolment(String studentID, String courseID, String sem){
+    public StudentEnrolment getOneEnrolment(String studentID, String courseID, String semester){
         for (StudentEnrolment se : enrolmentList){
             if (se.getStudent().getStudentID().equals(studentID) && se.getCourse().getCourseID().equals(courseID) &&
-                    se.getSem().equals(sem)){
+                    se.getSem().equals(semester)){
                 return se;
             }
         }
         return null;
     }
 
-    public ArrayList<StudentEnrolment> getAllEnrolmentsInOneSemester(String sem) {
+    public ArrayList<StudentEnrolment> getAllEnrolmentsInOneSemester(String semester) {
         ArrayList<StudentEnrolment> enrolments = new ArrayList<>();
         for (StudentEnrolment se : enrolmentList){
-            if (se.getSem().equals(sem)){
+            if (se.getSem().equals(semester)){
                 enrolments.add(se);
             }
         }
@@ -104,4 +114,6 @@ public class StudentEnrolmentManagerImpl implements StudentEnrolmentManager{
         }
         return null;
     }
+
+
 }

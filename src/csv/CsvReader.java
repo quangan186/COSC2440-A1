@@ -7,15 +7,15 @@ import java.io.IOException;
 import java.sql.Array;
 import java.util.ArrayList;
 
-public class csvReader {
+public class CsvReader {
     private final String fileName;
 
-    public csvReader(String fileName) {
+    public CsvReader(String fileName) {
         this.fileName = fileName;
     }
     public ArrayList<String> getAllEnrolment(){
         ArrayList<String> rows = new ArrayList<>();
-        String row = "";
+        String row;
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
             while ((row = br.readLine()) != null){
@@ -26,5 +26,14 @@ public class csvReader {
             e.printStackTrace();
         }
         return rows;
+    }
+
+    public ArrayList<String> getColumn(int columnIndex) {
+        String[] rows = getAllEnrolment().toArray(new String[getAllEnrolment().size()]);
+        ArrayList<String> values = new ArrayList<>();
+        for (String row : rows) {
+            values.add(row.split(",")[columnIndex]);
+        }
+        return values;
     }
 }

@@ -4,6 +4,7 @@ import csv.CsvWriter;
 import model.Course;
 import repo.StudentEnrolmentManager;
 import service.CourseService;
+import service.CsvService;
 import service.InputService;
 import utility.Input;
 
@@ -12,27 +13,38 @@ import java.util.ArrayList;
 public class CourseMenu {
     private final CourseService courseService;
     private final InputService inputService;
+    private final CsvService csvService;
 
     public CourseMenu(StudentEnrolmentManager sem) {
         this.inputService = new InputService();
         this.courseService = new CourseService(sem);
+        csvService = new CsvService(sem);
     }
 
     public void viewCourses(){
+        System.out.println("------------------------------------------------------------\n");
         courseService.display(courseService.getAllCourses());
     }
 
     public void viewAllCoursesInOneSemester(){
+        System.out.println("------------------------------------------------------------");
         String semester = inputService.getSemesterInput();
-        if (semester.isEmpty()) return;
+        if (!csvService.getAllSemester("default.csv").contains(semester)){
+            System.out.println("Cannot not find semester\n");
+            return;
+        }
+        System.out.println("------------------------------------------------------------\n");
         ArrayList<Course> courses = courseService.getAllCoursesInOneSemester(semester);
         courseService.display(courses);
+        System.out.println("------------------------------------------------------------");
         String saveReport = inputService.getWriteReport();
         while (!saveReport.isEmpty()){
             switch (saveReport.toLowerCase()){
                 case "y":
+                    System.out.println("Saved");
                     CsvWriter csvWriter = new CsvWriter("courses", semester);
                     csvWriter.writeFile(courses);
+                    return;
                 case "n":
                     return;
                 default:
@@ -43,16 +55,27 @@ public class CourseMenu {
     }
 
     public void viewCoursesStudentLearnInOneSemester(){
+        System.out.println("------------------------------------------------------------");
         String sid = inputService.getSidInput();
-        if (sid.isEmpty()) return;
+        if (!csvService.getAllStudentID("default.csv").contains(sid)){
+            System.out.println("Cannot not find student ID\n");
+            return;
+        }
+
         String semester = inputService.getSemesterInput();
-        if (semester.isEmpty()) return;
+        if (!csvService.getAllSemester("default.csv").contains(semester)){
+            System.out.println("Cannot not find semester\n");
+            return;
+        }
+        System.out.println("------------------------------------------------------------\n");
         ArrayList<Course> courses = courseService.getCoursesStudentLearnsInOneSemester(sid, semester);
         courseService.display(courses);
+        System.out.println("------------------------------------------------------------");
         String saveReport = inputService.getWriteReport();
         while (!saveReport.isEmpty()){
             switch (saveReport.toLowerCase()){
                 case "y":
+                    System.out.println("Saved");
                     CsvWriter csvWriter = new CsvWriter("courses", sid, semester);
                     csvWriter.writeFile(courses);
                 case "n":
@@ -62,10 +85,10 @@ public class CourseMenu {
                     return;
             }
         }
-
     }
 
     public void menu(){
+        System.out.println("------------------------------------------------------------");
         System.out.println("Which one you want to see?");
         System.out.println("1. View courses");
         System.out.println("2. View courses in one semester");
@@ -78,6 +101,7 @@ public class CourseMenu {
             menu();
             Input input = new Input("Your choice: ");
             String choice = input.getInput();
+//            System.out.println();
             switch (choice) {
                 case "1" -> viewCourses();
                 case "2" -> viewAllCoursesInOneSemester();

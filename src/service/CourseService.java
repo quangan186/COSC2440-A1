@@ -16,7 +16,6 @@ public class CourseService {
     }
 
     public void display(ArrayList<Course> courseList){
-//        System.out.println("---------- Student Enrolment Management ----------");
         for (Course course : courseList){
             System.out.printf("- Course ID: %s\n- Course name: %s\n- Credit: %d\n\n", course.getCourseID(), course.getCourseName(), course.getCredit());
         }

@@ -25,6 +25,9 @@ public class StudentService {
     }
 
     public ArrayList<Student> getAllStudents(){
+        Set<Student> set = new HashSet<>(sem.getAllStudents());
+        sem.getAllStudents().clear();
+        sem.getAllStudents().addAll(set);
         return sem.getAllStudents();
     }
 
