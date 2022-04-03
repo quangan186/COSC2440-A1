@@ -8,22 +8,28 @@ import java.sql.Array;
 import java.util.ArrayList;
 
 public class CsvReader {
-    private final String fileName;
+    private String fileName;
 
     public CsvReader(String fileName) {
         this.fileName = fileName;
     }
+
+//    public void setFileName(String fileName){
+//        this.fileName = fileName;
+//    }
+
+
     public ArrayList<String> getAllEnrolment(){
         ArrayList<String> rows = new ArrayList<>();
-        String row;
-        try {
+        try{
             BufferedReader br = new BufferedReader(new FileReader(fileName));
+            String row;
             while ((row = br.readLine()) != null){
-                rows.add(row);
+                    rows.add(row);
+                }
 
-            }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Cannot find the file");
         }
         return rows;
     }

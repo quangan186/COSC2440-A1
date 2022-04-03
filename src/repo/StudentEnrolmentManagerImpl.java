@@ -1,5 +1,6 @@
 package repo;
 
+import csv.CsvReader;
 import model.Course;
 import model.Student;
 import model.StudentEnrolment;
@@ -17,25 +18,26 @@ public class StudentEnrolmentManagerImpl implements StudentEnrolmentManager{
         csvService = new CsvService(this);
     }
 
-    public void populateData() {
-        populateStudents();
-        populateCourses();
-        populateEnrolments();
+    public void populateData(String fileName) {
+//        csvReader.setFileName(fileName);
+        populateStudents(fileName);
+        populateCourses(fileName);
+        populateEnrolments(fileName);
     }
 
-    private void populateStudents() {
+    private void populateStudents(String fileName) {
         studentList.clear();
-        studentList.addAll(csvService.getStudentsFromCSV("default.csv"));
+        studentList.addAll(csvService.getStudentsFromCSV(fileName));
     }
 
-    private void populateCourses() {
+    private void populateCourses(String fileName) {
         courseList.clear();
-        courseList.addAll(csvService.getCoursesFromCSV("default.csv"));
+        courseList.addAll(csvService.getCoursesFromCSV(fileName));
     }
 
-    private void populateEnrolments() {
+    private void populateEnrolments(String fileName) {
         enrolmentList.clear();
-        enrolmentList.addAll(csvService.getEnrolmentsFromCSV("default.csv"));
+        enrolmentList.addAll(csvService.getEnrolmentsFromCSV(fileName));
     }
 
     public boolean addEnrolment(String studentID, String courseID, String semester){

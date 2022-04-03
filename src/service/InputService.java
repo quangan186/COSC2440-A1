@@ -7,12 +7,14 @@ public class InputService {
     private final Input cidInput;
     private final Input semesterInput;
     private final Input writeReport;
+    private final Input csvInput;
 
     public InputService() {
         this.sidInput = new Input("Student ID: ");
         this.cidInput = new Input("Course ID: ");
         this.semesterInput = new Input("Semester: ");
         this.writeReport = new Input("Do you want to save the report? (y/n): ");
+        this.csvInput = new Input("Input your file csv: ");
     }
 
     public String getSidInput() {
@@ -29,5 +31,9 @@ public class InputService {
 
     public String getWriteReport() {
         return writeReport.getInput();
+    }
+
+    public String getCsvInput() {
+        return csvInput.getInput();
     }
 }
