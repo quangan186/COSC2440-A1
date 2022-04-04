@@ -7,6 +7,8 @@ import model.StudentEnrolment;
 import service.CsvService;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class StudentEnrolmentManagerImpl implements StudentEnrolmentManager{
     private final ArrayList<StudentEnrolment> enrolmentList = new ArrayList<>();
@@ -18,26 +20,25 @@ public class StudentEnrolmentManagerImpl implements StudentEnrolmentManager{
         csvService = new CsvService(this);
     }
 
-    public void populateData(String fileName) {
-//        csvReader.setFileName(fileName);
-        populateStudents(fileName);
-        populateCourses(fileName);
-        populateEnrolments(fileName);
+    public void populateData() {
+        populateStudents();
+        populateCourses();
+        populateEnrolments();
     }
 
-    private void populateStudents(String fileName) {
+    private void populateStudents() {
         studentList.clear();
-        studentList.addAll(csvService.getStudentsFromCSV(fileName));
+        studentList.addAll(csvService.getStudentsFromCSV("default.csv"));
     }
 
-    private void populateCourses(String fileName) {
+    private void populateCourses() {
         courseList.clear();
-        courseList.addAll(csvService.getCoursesFromCSV(fileName));
+        courseList.addAll(csvService.getCoursesFromCSV("default.csv"));
     }
 
-    private void populateEnrolments(String fileName) {
+    private void populateEnrolments() {
         enrolmentList.clear();
-        enrolmentList.addAll(csvService.getEnrolmentsFromCSV(fileName));
+        enrolmentList.addAll(csvService.getEnrolmentsFromCSV("default.csv"));
     }
 
     public boolean addEnrolment(String studentID, String courseID, String semester){
@@ -86,6 +87,9 @@ public class StudentEnrolmentManagerImpl implements StudentEnrolmentManager{
                 enrolments.add(se);
             }
         }
+        Set<StudentEnrolment> set = new HashSet<>(enrolments);
+        enrolments.clear();
+        enrolments.addAll(set);
         return enrolments;
     }
 
@@ -93,10 +97,17 @@ public class StudentEnrolmentManagerImpl implements StudentEnrolmentManager{
         return enrolmentList;
     }
     public ArrayList<Course> getAllCourses(){
+        Set<Course> set = new HashSet<>(courseList);
+        courseList.clear();
+        courseList.addAll(set);
         return  courseList;
     }
     public ArrayList<Student> getAllStudents(){
-        return studentList;
+        ArrayList<Student> students = studentList;
+        Set<Student> set = new HashSet<>(students);
+        students.clear();
+        students.addAll(set);
+        return students;
     }
 
     public Student getStudentByID(String studentID){

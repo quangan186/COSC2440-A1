@@ -8,16 +8,11 @@ import java.sql.Array;
 import java.util.ArrayList;
 
 public class CsvReader {
-    private String fileName;
+    private final String fileName;
 
     public CsvReader(String fileName) {
         this.fileName = fileName;
     }
-
-//    public void setFileName(String fileName){
-//        this.fileName = fileName;
-//    }
-
 
     public ArrayList<String> getAllEnrolment(){
         ArrayList<String> rows = new ArrayList<>();

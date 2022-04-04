@@ -30,33 +30,46 @@ public class StudentMenu {
         System.out.println("------------------------------------------------------------");
         String cid = inputService.getCidInput();
         if (!csvService.getAllCourseID("default.csv").contains(cid)){
-            System.out.println("Cannot not find course ID\n");
+            System.out.println("------------------------------------------------------------");
+            System.out.println("Cannot not find course ID");
             return;
         }
 
         String semester = inputService.getSemesterInput();
         if (!csvService.getAllSemester("default.csv").contains(semester)){
-            System.out.println("Cannot not find semester\n");
+            System.out.println("------------------------------------------------------------");
+            System.out.println("Cannot not find semester");
             return;
         }
 
         ArrayList<Student> students = studentService.getAllStudentsInOneCourse(cid,semester);
-        studentService.display(students);
 
-        String saveReport = inputService.getWriteReport();
-        while (!saveReport.isEmpty()){
-            switch (saveReport.toLowerCase()){
-                case "y":
-                    CsvWriter csvWriter = new CsvWriter("students", semester);
-                    csvWriter.writeFile(students);
-                    System.out.println("Saved\n");
-                case "n":
-                    return;
-                default:
-                    System.out.println("Invalid input");
-                    return;
+        if (students.size() == 0){
+            System.out.println("------------------------------------------------------------");
+            System.out.println("No students found");
+        } else {
+            studentService.display(students);
+
+            System.out.println("------------------------------------------------------------");
+
+            String saveReport = inputService.getWriteReport();
+            while (!saveReport.isEmpty()){
+                switch (saveReport.toLowerCase()){
+                    case "y":
+                        CsvWriter csvWriter = new CsvWriter("students", semester);
+                        csvWriter.writeFile(students);
+                        System.out.println("Saved");
+                        return;
+                    case "n":
+                        return;
+                    default:
+                        System.out.println("------------------------------------------------------------");
+                        System.out.println("Invalid input");
+                        return;
+                }
             }
         }
+
 
     }
 
@@ -78,9 +91,13 @@ public class StudentMenu {
                 case "1" -> viewStudents();
                 case "2" -> viewAllStudentsInOneCourse();
                 case "3" -> {
+                    System.out.println("------------------------------------------------------------");
                     return;
                 }
-                default -> System.out.println("Invalid input");
+                default -> {
+                    System.out.println("------------------------------------------------------------");
+                    System.out.println("Invalid input");
+                }
             }
         }
     }

@@ -22,9 +22,6 @@ public class CourseService {
     }
 
     public ArrayList<Course> getAllCourses(){
-        Set<Course> set = new HashSet<>(sem.getAllCourses());
-        sem.getAllCourses().clear();
-        sem.getAllCourses().addAll(set);
         return sem.getAllCourses();
     }
 

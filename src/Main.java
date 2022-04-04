@@ -7,6 +7,7 @@ import service.CsvService;
 public class Main {
     public static void main(String[] args) {
         StudentEnrolmentManagerImpl semi = new StudentEnrolmentManagerImpl();
+        semi.populateData();
         MainMenu mainMenu = new MainMenu(semi);
         mainMenu.run();
 //        CsvReader reader = new CsvReader("default.csv");

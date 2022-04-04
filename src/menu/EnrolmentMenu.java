@@ -30,7 +30,8 @@ public class EnrolmentMenu {
         System.out.println("------------------------------------------------------------");
         String semester = inputService.getSemesterInput();
         if (!csvService.getAllSemester("default.csv").contains(semester)){
-            System.out.println("Cannot not find semester\n");
+            System.out.println("------------------------------------------------------------");
+            System.out.println("Cannot not find semester");
             return;
         }
         enrolmentService.display(enrolmentService.getAllEnrolmentsInOneSemester(semester));
@@ -40,19 +41,21 @@ public class EnrolmentMenu {
         System.out.println("------------------------------------------------------------");
         String sid = inputService.getSidInput();
         if (!csvService.getAllStudentID("default.csv").contains(sid)){
-            System.out.println("Cannot not find student ID\n");
+            System.out.println("------------------------------------------------------------");
+            System.out.println("Cannot not find student ID");
             return;
         }
 
         String cid = inputService.getCidInput();
         if (!csvService.getAllCourseID("default.csv").contains(cid)){
-            System.out.println("Cannot not find course ID\n");
+            System.out.println("------------------------------------------------------------");
+            System.out.println("Cannot not find course ID");
             return;
         }
 
         String semester = inputService.getSemesterInput();
         if (!csvService.getAllSemester("default.csv").contains(semester)){
-            System.out.println("Cannot not find semester\n");
+            System.out.println("Cannot not find semester");
             return;
         }
         System.out.println("------------------------------------------------------------");
@@ -85,27 +88,30 @@ public class EnrolmentMenu {
         System.out.println("------------------------------------------------------------");
         String sid = inputService.getSidInput();
         if (!csvService.getAllStudentID("default.csv").contains(sid)){
-            System.out.println("Cannot not find student ID\n");
+            System.out.println("------------------------------------------------------------");
+            System.out.println("Cannot not find student ID");
             return;
         }
 
         String cid = inputService.getCidInput();
         if (!csvService.getAllCourseID("default.csv").contains(cid)){
             System.out.println("------------------------------------------------------------");
-            System.out.println("Cannot not find course ID\n");
+            System.out.println("Cannot not find course ID");
             return;
         }
 
         String semester = inputService.getSemesterInput();
         if (!csvService.getAllSemester("default.csv").contains(semester)){
             System.out.println("------------------------------------------------------------");
-            System.out.println("Cannot not find semester\n");
+            System.out.println("Cannot not find semester");
             return;
         }
 
         if(enrolmentService.addEnrolment(sid, cid, semester)){
+            System.out.println("------------------------------------------------------------");
             System.out.println("Enrolled successful");
         } else{
+            System.out.println("------------------------------------------------------------");
             System.out.println("Enrolled unsuccessful");
         }
     }
@@ -114,25 +120,30 @@ public class EnrolmentMenu {
         System.out.println("------------------------------------------------------------");
         String sid = inputService.getSidInput();
         if (!csvService.getAllStudentID("default.csv").contains(sid)){
-            System.out.println("Cannot not find student ID\n");
+            System.out.println("------------------------------------------------------------");
+            System.out.println("Cannot not find student ID");
             return;
         }
 
         String cid = inputService.getCidInput();
         if (!csvService.getAllCourseID("default.csv").contains(cid)){
-            System.out.println("Cannot not find course ID\n");
+            System.out.println("------------------------------------------------------------");
+            System.out.println("Cannot not find course ID");
             return;
         }
 
         String semester = inputService.getSemesterInput();
         if (!csvService.getAllSemester("default.csv").contains(semester)){
-            System.out.println("Cannot not find semester\n");
+            System.out.println("------------------------------------------------------------");
+            System.out.println("Cannot not find semester");
             return;
         }
 
         if(enrolmentService.deleteEnrolment(sid, cid, semester)){
+            System.out.println("------------------------------------------------------------");
             System.out.println("Dropped successful");
         } else{
+            System.out.println("------------------------------------------------------------");
             System.out.println("Dropped unsuccessful");
         }
     }
@@ -157,7 +168,8 @@ public class EnrolmentMenu {
                 case "3":
                     return;
                 default:
-                    System.out.println("Invalid input\n");
+                    System.out.println("------------------------------------------------------------");
+                    System.out.println("Invalid input");
                     return;
             }
         }
@@ -189,9 +201,13 @@ public class EnrolmentMenu {
                 case "2" -> viewEnrolmentsInOneSemester();
                 case "3" -> viewOneEnrolmentInOneSemester();
                 case "4" -> {
+                    System.out.println("------------------------------------------------------------");
                     return;
                 }
-                default -> System.out.println("Invalid input");
+                default -> {
+                    System.out.println("------------------------------------------------------------");
+                    System.out.println("Invalid input");
+                }
             }
         }
     }
