@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CsvReader {
+public class CsvReader extends CsvWriter {
     private final String fileName;
 
     public CsvReader(String fileName) {

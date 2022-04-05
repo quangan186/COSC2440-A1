@@ -40,7 +40,16 @@ public class EnrolmentService {
     }
 
     public ArrayList<StudentEnrolment> getAllEnrolmentsInOneSemester(String semester){
-        return sem.getAllEnrolmentsInOneSemester(semester);
+        ArrayList<StudentEnrolment> enrolments = new ArrayList<>();
+        for (StudentEnrolment se : sem.getAllEnrolment()){
+            if (se.getSem().equals(semester)){
+                enrolments.add(se);
+            }
+        }
+        Set<StudentEnrolment> set = new HashSet<>(enrolments);
+        enrolments.clear();
+        enrolments.addAll(set);
+        return enrolments;
     }
 
     public StudentEnrolment getOneEnrolment(String studentID, String courseID, String semester){

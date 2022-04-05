@@ -34,6 +34,7 @@ public class MainMenu {
                 case "2" -> enrolmentMenu.run();
                 case "3" -> studentMenu.run();
                 case "4" -> {
+                    System.out.println("------------------------------------------------------------");
                     System.out.println("Thank you for using our system!");
                     return;
                 }

@@ -7,13 +7,12 @@ import model.StudentEnrolment;
 import java.util.ArrayList;
 
 public interface StudentEnrolmentManager {
-    boolean addEnrolment(String studentID, String courseID, String sem);
-    boolean deleteEnrolment(String studentID, String courseID, String sem);
-    StudentEnrolment getOneEnrolment(String studentID, String courseID, String sem);
+    boolean addEnrolment(String studentID, String courseID, String semester);
+    boolean deleteEnrolment(String studentID, String courseID, String semester);
+    StudentEnrolment getOneEnrolment(String studentID, String courseID, String semester);
     ArrayList<StudentEnrolment> getAllEnrolment();
     ArrayList<Course> getAllCourses();
     ArrayList<Student> getAllStudents();
-    ArrayList<StudentEnrolment> getAllEnrolmentsInOneSemester(String sem);
     Student getStudentByID(String studentID);
     Course getCourseByID(String courseID);
 }

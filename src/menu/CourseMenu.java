@@ -48,7 +48,6 @@ public class CourseMenu {
                     return;
                 }
                 case "n" -> {
-                    System.out.println("------------------------------------------------------------");
                     return;
                 }
                 default -> {
@@ -82,22 +81,26 @@ public class CourseMenu {
             System.out.println("------------------------------------------------------------");
             System.out.println("No courses found");
         } else {
+            System.out.println("------------------------------------------------------------\n");
             courseService.display(courses);
             System.out.println("------------------------------------------------------------");
             String saveReport = inputService.getWriteReport();
             while (!saveReport.isEmpty()){
-                switch (saveReport.toLowerCase()){
-                    case "y":
+                switch (saveReport.toLowerCase()) {
+                    case "y" -> {
                         System.out.println("Saved");
                         CsvWriter csvWriter = new CsvWriter("courses", sid, semester);
                         csvWriter.writeFile(courses);
-                    case "n":
-                        System.out.println("------------------------------------------------------------");
                         return;
-                    default:
+                    }
+                    case "n" -> {
+                        return;
+                    }
+                    default -> {
                         System.out.println("------------------------------------------------------------");
                         System.out.println("Invalid input");
                         return;
+                    }
                 }
             }
         }

@@ -48,17 +48,17 @@ public class StudentMenu {
             System.out.println("------------------------------------------------------------");
             System.out.println("No students found");
         } else {
+            System.out.println("------------------------------------------------------------\n");
             studentService.display(students);
-
             System.out.println("------------------------------------------------------------");
 
             String saveReport = inputService.getWriteReport();
             while (!saveReport.isEmpty()){
                 switch (saveReport.toLowerCase()){
                     case "y":
+                        System.out.println("Saved");
                         CsvWriter csvWriter = new CsvWriter("students", semester);
                         csvWriter.writeFile(students);
-                        System.out.println("Saved");
                         return;
                     case "n":
                         return;

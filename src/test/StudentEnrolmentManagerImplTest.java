@@ -36,13 +36,6 @@ class StudentEnrolmentManagerImplTest {
     }
 
     @Test
-    void getAllEnrolmentsInOneSemester() {
-        Assertions.assertEquals(semi.getAllEnrolmentsInOneSemester("2020C").size(), 6);
-        Assertions.assertEquals(semi.getAllEnrolmentsInOneSemester("2020B").size(), 2);
-        Assertions.assertEquals(semi.getAllEnrolmentsInOneSemester("2021A").size(), 7);
-    }
-
-    @Test
     void getAllEnrolment() {
         Assertions.assertEquals(semi.getAllEnrolment().size(), 15);
     }

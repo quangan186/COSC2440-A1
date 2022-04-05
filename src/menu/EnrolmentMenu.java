@@ -34,6 +34,7 @@ public class EnrolmentMenu {
             System.out.println("Cannot not find semester");
             return;
         }
+        System.out.println("------------------------------------------------------------\n");
         enrolmentService.display(enrolmentService.getAllEnrolmentsInOneSemester(semester));
     }
 
@@ -148,7 +149,7 @@ public class EnrolmentMenu {
         }
     }
 
-    public void updateEnrolmentMenu(String s){
+    private void updateEnrolmentMenu(String s){
         while (s.equalsIgnoreCase("y")){
             System.out.println("------------------------------------------------------------");
             courseService.display(courseService.getAllCourses());

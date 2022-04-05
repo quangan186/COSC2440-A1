@@ -79,28 +79,20 @@ public class StudentEnrolmentManagerImpl implements StudentEnrolmentManager{
         return null;
     }
 
-    public ArrayList<StudentEnrolment> getAllEnrolmentsInOneSemester(String semester) {
-        ArrayList<StudentEnrolment> enrolments = new ArrayList<>();
-        for (StudentEnrolment se : enrolmentList){
-            if (se.getSem().equals(semester)){
-                enrolments.add(se);
-            }
-        }
-        Set<StudentEnrolment> set = new HashSet<>(enrolments);
-        enrolments.clear();
-        enrolments.addAll(set);
-        return enrolments;
-    }
-
     public ArrayList<StudentEnrolment> getAllEnrolment(){
+        Set<StudentEnrolment> set = new HashSet<>(enrolmentList);
+        enrolmentList.clear();
+        enrolmentList.addAll(set);
         return enrolmentList;
     }
+
     public ArrayList<Course> getAllCourses(){
         Set<Course> set = new HashSet<>(courseList);
         courseList.clear();
         courseList.addAll(set);
         return  courseList;
     }
+
     public ArrayList<Student> getAllStudents(){
         ArrayList<Student> students = studentList;
         Set<Student> set = new HashSet<>(students);
