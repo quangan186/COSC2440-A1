@@ -15,8 +15,7 @@ public class MainMenu {
         this.enrolmentMenu = new EnrolmentMenu(sem);
     }
 
-    public void menu(){
-//        System.out.println("------------------------------------------------------------");
+    private void menu(){
         System.out.println("Which one you want to see? ");
         System.out.println("1. Manage courses");
         System.out.println("2. Manage enrolments");

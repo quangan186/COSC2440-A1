@@ -21,12 +21,12 @@ public class StudentMenu {
         csvService = new CsvService(sem);
     }
 
-    public void viewStudents(){
+    private void viewStudents(){
         System.out.println("------------------------------------------------------------");
         studentService.display(studentService.getAllStudents());
     }
 
-    public void viewAllStudentsInOneCourse(){
+    private void viewAllStudentsInOneCourse(){
         System.out.println("------------------------------------------------------------");
         String cid = inputService.getCidInput();
         if (!csvService.getAllCourseID("default.csv").contains(cid)){
@@ -73,7 +73,7 @@ public class StudentMenu {
 
     }
 
-    public void menu(){
+    private void menu(){
         System.out.println("------------------------------------------------------------");
         System.out.println("Which do you want to see: ");
         System.out.println("1. View all students");

@@ -21,12 +21,12 @@ public class CourseMenu {
         csvService = new CsvService(sem);
     }
 
-    public void viewCourses(){
+    private void viewCourses(){
         System.out.println("------------------------------------------------------------\n");
         courseService.display(courseService.getAllCourses());
     }
 
-    public void viewAllCoursesInOneSemester(){
+    private void viewAllCoursesInOneSemester(){
         System.out.println("------------------------------------------------------------");
         String semester = inputService.getSemesterInput();
         if (!csvService.getAllSemester("default.csv").contains(semester)){
@@ -60,7 +60,7 @@ public class CourseMenu {
         }
     }
 
-    public void viewCoursesStudentLearnInOneSemester(){
+    private void viewCoursesStudentLearnInOneSemester(){
         System.out.println("------------------------------------------------------------");
         String sid = inputService.getSidInput();
         if (!csvService.getAllStudentID("default.csv").contains(sid)){
@@ -104,7 +104,7 @@ public class CourseMenu {
 
     }
 
-    public void menu(){
+    private void menu(){
         System.out.println("------------------------------------------------------------");
         System.out.println("Which one you want to see?");
         System.out.println("1. View courses");
@@ -118,7 +118,6 @@ public class CourseMenu {
             menu();
             Input input = new Input("Your choice: ");
             String choice = input.getInput();
-//            System.out.println();
             switch (choice) {
                 case "1" -> viewCourses();
                 case "2" -> viewAllCoursesInOneSemester();

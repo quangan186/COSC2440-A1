@@ -38,25 +38,6 @@ public class Course implements Model{
         return String.join(",", courseID, courseName, String.valueOf(credit)) + "\n";
     }
 
-//    @Override
-//    public boolean equals(Object obj) {
-//        // TODO Auto-generated method stub
-//        if(obj instanceof Course)
-//        {
-//            Course temp = (Course) obj;
-//            if(this.courseID.equals(temp.courseID) && this.courseName.equals(temp.courseName) && this.credit == temp.credit)
-//                return true;
-//        }
-//        return false;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        // TODO Auto-generated method stub
-//
-//        return (this.courseID.hashCode() + this.courseName.hashCode() + this.credit.hashCode() + this.description.hashCode());
-//    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

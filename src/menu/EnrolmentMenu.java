@@ -21,12 +21,12 @@ public class EnrolmentMenu {
         csvService = new CsvService(sem);
     }
 
-    public void viewEnrolments(){
+    private void viewEnrolments(){
         System.out.println("------------------------------------------------------------\n");
         enrolmentService.display(enrolmentService.getAllEnrolments());
     }
 
-    public void viewEnrolmentsInOneSemester(){
+    private void viewEnrolmentsInOneSemester(){
         System.out.println("------------------------------------------------------------");
         String semester = inputService.getSemesterInput();
         if (!csvService.getAllSemester("default.csv").contains(semester)){
@@ -37,7 +37,7 @@ public class EnrolmentMenu {
         enrolmentService.display(enrolmentService.getAllEnrolmentsInOneSemester(semester));
     }
 
-    public void viewOneEnrolmentInOneSemester(){
+    private void viewOneEnrolmentInOneSemester(){
         System.out.println("------------------------------------------------------------");
         String sid = inputService.getSidInput();
         if (!csvService.getAllStudentID("default.csv").contains(sid)){
@@ -84,7 +84,7 @@ public class EnrolmentMenu {
 
     }
 
-    public void addOneEnrolment(){
+    private void addOneEnrolment(){
         System.out.println("------------------------------------------------------------");
         String sid = inputService.getSidInput();
         if (!csvService.getAllStudentID("default.csv").contains(sid)){
@@ -116,7 +116,7 @@ public class EnrolmentMenu {
         }
     }
 
-    public void deleteOneEnrolment(){
+    private void deleteOneEnrolment(){
         System.out.println("------------------------------------------------------------");
         String sid = inputService.getSidInput();
         if (!csvService.getAllStudentID("default.csv").contains(sid)){
@@ -175,7 +175,7 @@ public class EnrolmentMenu {
         }
     }
 
-    public void menu(){
+    private void menu(){
         System.out.println("------------------------------------------------------------");
         System.out.println("Which do you want to see? ");
         System.out.println("1. View all enrolments");

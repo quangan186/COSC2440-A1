@@ -1,7 +1,5 @@
 package service;
 
-import model.Course;
-import model.Student;
 import model.StudentEnrolment;
 import repo.StudentEnrolmentManager;
 import utility.DateConverter;
