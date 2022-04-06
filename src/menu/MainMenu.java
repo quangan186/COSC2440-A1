@@ -15,6 +15,9 @@ public class MainMenu {
         this.enrolmentMenu = new EnrolmentMenu(sem);
     }
 
+    /**
+     * display the main menu
+     */
     private void menu(){
         System.out.println("Which one you want to see? ");
         System.out.println("1. Manage courses");
@@ -23,6 +26,9 @@ public class MainMenu {
         System.out.println("4. Quit");
     }
 
+    /**
+     * run the main menu
+     */
     public void run() {
         System.out.println("--------------- Student Enrolment Management ---------------");
         while (true) {

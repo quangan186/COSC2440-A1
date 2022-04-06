@@ -11,12 +11,22 @@ public class DateConverter {
 
     }
 
+    /**
+     * convert Date to String
+     * @param d;
+     * @return String
+     */
     public static String convertDateToString(Date d){
         if (d == null) return "";
         DateFormat df = new SimpleDateFormat(DATE_FORMAT);
         return df.format(d);
     }
 
+    /**
+     * convert String to Date
+     * @param date;
+     * @return String
+     */
     public static Date convertStringToDate(String date) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
         sdf.setLenient(false);

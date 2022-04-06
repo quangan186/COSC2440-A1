@@ -10,7 +10,7 @@ public interface StudentEnrolmentManager {
     boolean addEnrolment(String studentID, String courseID, String semester);
     boolean deleteEnrolment(String studentID, String courseID, String semester);
     StudentEnrolment getOneEnrolment(String studentID, String courseID, String semester);
-    ArrayList<StudentEnrolment> getAllEnrolment();
+    ArrayList<StudentEnrolment> getAllEnrolments();
     ArrayList<Course> getAllCourses();
     ArrayList<Student> getAllStudents();
     Student getStudentByID(String studentID);

@@ -5,13 +5,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CsvReader extends CsvWriter {
+public class CsvReader{
     private final String fileName;
 
     public CsvReader(String fileName) {
         this.fileName = fileName;
     }
 
+    /**
+     * get all rows in csv file
+     * @return ArrayList<String>
+     */
     public ArrayList<String> getAllEnrolment(){
         ArrayList<String> rows = new ArrayList<>();
         try{
@@ -27,6 +31,11 @@ public class CsvReader extends CsvWriter {
         return rows;
     }
 
+    /**
+     * get column at the index
+     * @param columnIndex;
+     * @return ArrayList<String>
+     */
     public ArrayList<String> getColumn(int columnIndex) {
         String[] rows = getAllEnrolment().toArray(new String[getAllEnrolment().size()]);
         ArrayList<String> values = new ArrayList<>();

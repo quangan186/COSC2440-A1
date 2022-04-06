@@ -21,11 +21,17 @@ public class CourseMenu {
         csvService = new CsvService(sem);
     }
 
+    /**
+     * display all courses
+     */
     private void viewCourses(){
         System.out.println("------------------------------------------------------------\n");
         courseService.display(courseService.getAllCourses());
     }
 
+    /**
+     * display all course in one semester
+     */
     private void viewAllCoursesInOneSemester(){
         System.out.println("------------------------------------------------------------");
         String semester = inputService.getSemesterInput();
@@ -59,6 +65,9 @@ public class CourseMenu {
         }
     }
 
+    /**
+     * display all courses that a student learn in one semester
+     */
     private void viewCoursesStudentLearnInOneSemester(){
         System.out.println("------------------------------------------------------------");
         String sid = inputService.getSidInput();
@@ -107,6 +116,9 @@ public class CourseMenu {
 
     }
 
+    /**
+     * display Course menu
+     */
     private void menu(){
         System.out.println("------------------------------------------------------------");
         System.out.println("Which one you want to see?");
@@ -116,6 +128,9 @@ public class CourseMenu {
         System.out.println("4. Back");
     }
 
+    /**
+     * run the Course menu
+     */
     public void run(){
         while (true){
             menu();

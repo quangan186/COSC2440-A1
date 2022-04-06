@@ -14,6 +14,11 @@ public class CsvWriter {
         this.fileName = String.join("_", names) + ".csv";
     }
 
+    /**
+     * write the list in the new csv file
+     * @param models;
+     * @return boolean
+     */
     public boolean writeFile(ArrayList<? extends Model> models){
         createFile();
         try {
@@ -32,6 +37,10 @@ public class CsvWriter {
         }
     }
 
+    /**
+     * create new csv file
+     * @return File
+     */
     private File createFile(){
         File file = new File("C:\\COSC2440-A1\\src\\data\\" + fileName);
         try {

@@ -21,11 +21,17 @@ public class EnrolmentMenu {
         csvService = new CsvService(sem);
     }
 
+    /**
+     * display all enrollments
+     */
     private void viewEnrolments(){
         System.out.println("------------------------------------------------------------\n");
         enrolmentService.display(enrolmentService.getAllEnrolments());
     }
 
+    /**
+     * display all enrollments in one semester
+     */
     private void viewEnrolmentsInOneSemester(){
         System.out.println("------------------------------------------------------------");
         String semester = inputService.getSemesterInput();
@@ -38,6 +44,9 @@ public class EnrolmentMenu {
         enrolmentService.display(enrolmentService.getAllEnrolmentsInOneSemester(semester));
     }
 
+    /**
+     * display the enrolment gotten from the list
+     */
     private void viewOneEnrolmentInOneSemester(){
         System.out.println("------------------------------------------------------------");
         String sid = inputService.getSidInput();
@@ -85,6 +94,9 @@ public class EnrolmentMenu {
 
     }
 
+    /**
+     * call and display addEnrolment method in the system
+     */
     private void addOneEnrolment(){
         System.out.println("------------------------------------------------------------");
         String sid = inputService.getSidInput();
@@ -117,6 +129,9 @@ public class EnrolmentMenu {
         }
     }
 
+    /**
+     * call and display deleteEnrolment method in the system
+     */
     private void deleteOneEnrolment(){
         System.out.println("------------------------------------------------------------");
         String sid = inputService.getSidInput();
@@ -149,6 +164,9 @@ public class EnrolmentMenu {
         }
     }
 
+    /**
+     * display update menu contains add and delete functions
+     */
     private void updateEnrolmentMenu(String s){
         while (s.equalsIgnoreCase("y")){
             System.out.println("------------------------------------------------------------");
@@ -176,6 +194,9 @@ public class EnrolmentMenu {
         }
     }
 
+    /**
+     * display Enrolment menu
+     */
     private void menu(){
         System.out.println("------------------------------------------------------------");
         System.out.println("Which do you want to see? ");
@@ -185,6 +206,9 @@ public class EnrolmentMenu {
         System.out.println("4. Back");
     }
 
+    /**
+     * run the Enrolment menu
+     */
     public void run() {
         while (true) {
             menu();

@@ -21,11 +21,17 @@ public class StudentMenu {
         csvService = new CsvService(sem);
     }
 
+    /**
+     * display all students
+     */
     private void viewStudents(){
         System.out.println("------------------------------------------------------------");
         studentService.display(studentService.getAllStudents());
     }
 
+    /**
+     * display all students in one course
+     */
     private void viewAllStudentsInOneCourse(){
         System.out.println("------------------------------------------------------------");
         String cid = inputService.getCidInput();
@@ -73,6 +79,9 @@ public class StudentMenu {
 
     }
 
+    /**
+     * display Student menu
+     */
     private void menu(){
         System.out.println("------------------------------------------------------------");
         System.out.println("Which do you want to see: ");
@@ -81,6 +90,9 @@ public class StudentMenu {
         System.out.println("3. Back");
     }
 
+    /**
+     * run the Student meny
+     */
     public void run() {
         while (true) {
             menu();

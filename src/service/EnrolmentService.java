@@ -33,15 +33,15 @@ public class EnrolmentService {
     }
 
     public ArrayList<StudentEnrolment> getAllEnrolments(){
-        Set<StudentEnrolment> set = new HashSet<>(sem.getAllEnrolment());
-        sem.getAllEnrolment().clear();
-        sem.getAllEnrolment().addAll(set);
-        return sem.getAllEnrolment();
+        Set<StudentEnrolment> set = new HashSet<>(sem.getAllEnrolments());
+        sem.getAllEnrolments().clear();
+        sem.getAllEnrolments().addAll(set);
+        return sem.getAllEnrolments();
     }
 
     public ArrayList<StudentEnrolment> getAllEnrolmentsInOneSemester(String semester){
         ArrayList<StudentEnrolment> enrolments = new ArrayList<>();
-        for (StudentEnrolment se : sem.getAllEnrolment()){
+        for (StudentEnrolment se : sem.getAllEnrolments()){
             if (se.getSem().equals(semester)){
                 enrolments.add(se);
             }

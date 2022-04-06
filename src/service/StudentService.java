@@ -29,7 +29,7 @@ public class StudentService {
 
     public ArrayList<Student> getAllStudentsInOneCourse(String courseID, String semester){
         ArrayList<Student> students = new ArrayList<>();
-        for (StudentEnrolment se : sem.getAllEnrolment()){
+        for (StudentEnrolment se : sem.getAllEnrolments()){
             if (se.getCourse().getCourseID().equals(courseID) && se.getSem().equals(semester)){
                 students.add(se.getStudent());
             }

@@ -37,7 +37,7 @@ class StudentEnrolmentManagerImplTest {
 
     @Test
     void getAllEnrolment() {
-        Assertions.assertEquals(semi.getAllEnrolment().size(), 15);
+        Assertions.assertEquals(semi.getAllEnrolments().size(), 15);
     }
 
     @Test

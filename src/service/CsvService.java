@@ -20,6 +20,11 @@ public class CsvService {
         this.sem = sem;
     }
 
+    /**
+     * convert the information each row in the csv file to Student
+     * @param csv;
+     * @return Student
+     */
     private Student convertRowToStudent(String csv){
         String[] fields = csv.split(",");
         String sid = fields[0].trim();
@@ -33,6 +38,11 @@ public class CsvService {
         return new Student(sid, studentName, birthDate);
     }
 
+    /**
+     * convert the information each row in the csv file to Course
+     * @param csv;
+     * @return Course
+     */
     private Course convertRowToCourse(String csv){
         String[] fields = csv.split(",");
         String cid = fields[3].trim();
@@ -42,6 +52,11 @@ public class CsvService {
         return new Course(cid, courseName, credit);
     }
 
+    /**
+     * convert the information each row in the csv file to Enrolment
+     * @param csv;
+     * @return StudentEnrolment
+     */
     private StudentEnrolment convertRowToEnrolment(String csv){
         String[] fields = csv.split(",");
         String sem = fields[6];
@@ -49,6 +64,11 @@ public class CsvService {
         return new StudentEnrolment(convertRowToStudent(csv), convertRowToCourse(csv), sem);
     }
 
+    /**
+     * get students from the csv file
+     * @param fileName;
+     * @return ArrayList<Student>
+     */
     public ArrayList<Student> getStudentsFromCSV(String fileName){
         CsvReader reader = new CsvReader(fileName);
         ArrayList<Student> students = new ArrayList<>();
@@ -58,6 +78,11 @@ public class CsvService {
         return students;
     }
 
+    /**
+     * get courses from the csv file
+     * @param fileName;
+     * @return ArrayList<Course>
+     */
     public ArrayList<Course> getCoursesFromCSV(String fileName){
         CsvReader reader = new CsvReader(fileName);
         ArrayList<Course> courses = new ArrayList<>();
@@ -67,6 +92,11 @@ public class CsvService {
         return courses;
     }
 
+    /**
+     * get enrollments from the csv file
+     * @param fileName;
+     * @return ArrayList<StudentEnrolment>
+     */
     public ArrayList<StudentEnrolment> getEnrolmentsFromCSV(String fileName){
         CsvReader reader = new CsvReader(fileName);
         ArrayList<StudentEnrolment> enrolments = new ArrayList<>();
@@ -76,6 +106,11 @@ public class CsvService {
         return enrolments;
     }
 
+    /**
+     * get student IDs from the csv file
+     * @param fileName;
+     * @return ArrayList<String>
+     */
     public ArrayList<String> getAllStudentID(String fileName){
         CsvReader reader = new CsvReader(fileName);
         ArrayList<String> sidList = new ArrayList<>(reader.getColumn(0));
@@ -85,6 +120,11 @@ public class CsvService {
         return sidList;
     }
 
+    /**
+     * get course IDs from the csv file
+     * @param fileName;
+     * @return ArrayList<String>
+     */
     public ArrayList<String> getAllCourseID(String fileName){
         CsvReader reader = new CsvReader(fileName);
         ArrayList<String> cidList = new ArrayList<>(reader.getColumn(3));
@@ -94,6 +134,11 @@ public class CsvService {
         return cidList;
     }
 
+    /**
+     * get semester IDs from the csv file
+     * @param fileName;
+     * @return ArrayList<String>
+     */
     public ArrayList<String> getAllSemester(String fileName){
         CsvReader reader = new CsvReader(fileName);
         ArrayList<String> semList = new ArrayList<>(reader.getColumn(6));
