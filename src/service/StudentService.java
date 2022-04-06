@@ -16,6 +16,10 @@ public class StudentService {
         this.sem = sem;
     }
 
+    /**
+     * display student object in the student list
+     * @param studentList;
+     */
     public void display(ArrayList<Student> studentList){
         for (Student student : studentList){
             System.out.printf("- Student ID: %s\n- Student name: %s\n- Birthdate: %s\n\n", student.getStudentID(),
@@ -23,10 +27,20 @@ public class StudentService {
         }
     }
 
+    /**
+     * call the getAllStudents method in the system
+     * @return ArrayList<Student>
+     */
     public ArrayList<Student> getAllStudents(){
         return sem.getAllStudents();
     }
 
+    /**
+     * get all students in one course
+     * @param courseID;
+     * @param semester;
+     * @return ArrayList<Student>
+     */
     public ArrayList<Student> getAllStudentsInOneCourse(String courseID, String semester){
         ArrayList<Student> students = new ArrayList<>();
         for (StudentEnrolment se : sem.getAllEnrolments()){

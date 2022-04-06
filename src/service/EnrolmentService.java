@@ -15,6 +15,10 @@ public class EnrolmentService {
         this.sem = sem;
     }
 
+    /**
+     * display enrolment object in the list
+     * @param enrolmentList;
+     */
     public void display(ArrayList<StudentEnrolment> enrolmentList){
         for (StudentEnrolment se : enrolmentList){
             System.out.printf("""
@@ -32,6 +36,10 @@ public class EnrolmentService {
         }
     }
 
+    /**
+     * call getAllEnrolment method in the system
+     * @return ArrayList<StudentEnrolment>
+     */
     public ArrayList<StudentEnrolment> getAllEnrolments(){
         Set<StudentEnrolment> set = new HashSet<>(sem.getAllEnrolments());
         sem.getAllEnrolments().clear();
@@ -39,6 +47,11 @@ public class EnrolmentService {
         return sem.getAllEnrolments();
     }
 
+    /**
+     * Get all enrolments in one semester
+     * @param semester;
+     * @return ArrayList<StudentEnrolment>
+     */
     public ArrayList<StudentEnrolment> getAllEnrolmentsInOneSemester(String semester){
         ArrayList<StudentEnrolment> enrolments = new ArrayList<>();
         for (StudentEnrolment se : sem.getAllEnrolments()){
@@ -52,14 +65,35 @@ public class EnrolmentService {
         return enrolments;
     }
 
+    /**
+     * get one enrolment in the enrolment list
+     * @param studentID;
+     * @param courseID;
+     * @param semester;
+     * @return StudentEnrolment
+     */
     public StudentEnrolment getOneEnrolment(String studentID, String courseID, String semester){
         return sem.getOneEnrolment(studentID, courseID, semester);
     }
 
+    /**
+     * call addEnrolment method in the system
+     * @param studentID;
+     * @param courseID;
+     * @param semester;
+     * @return boolean
+     */
     public boolean addEnrolment(String studentID, String courseID, String semester){
         return sem.addEnrolment(studentID, courseID, semester);
     }
 
+    /**
+     * call deleteEnrolment method in the system
+     * @param studentID;
+     * @param courseID;
+     * @param semester;
+     * @return boolean
+     */
     public boolean deleteEnrolment(String studentID, String courseID, String semester){
         return sem.deleteEnrolment(studentID, courseID, semester);
     }
